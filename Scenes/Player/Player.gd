@@ -6,9 +6,9 @@ const GRAVITY = 10
 # Movement
 const ACCELERATION = 20
 const MAX_SPEED = 450
-const JUMP_HEIGHT = 400
+const JUMP_HEIGHT = 350
 # Blink
-const BLINK_DISTANCE = 110
+const BLINK_DISTANCE = 130
 
 # Movement
 var motion = Vector2()
