@@ -1,0 +1,32 @@
+[remap]
+
+importer="texture"
+type="StreamTexture"
+path="res://.import/Running-4.png-005bb1274466c08b7d6256729fe43fd5.stex"
+
+[deps]
+
+source_file="res://Player Animation/Running-4.png"
+source_md5="ce45c918c4bd760d6263530e0c0a3b89"
+
+dest_files=[ "res://.import/Running-4.png-005bb1274466c08b7d6256729fe43fd5.stex" ]
+dest_md5="263ad80578817a728af0e55b456579c9"
+
+[params]
+
+compress/mode=0
+compress/lossy_quality=0.7
+compress/hdr_mode=0
+compress/normal_map=0
+flags/repeat=0
+flags/filter=true
+flags/mipmaps=false
+flags/anisotropic=false
+flags/srgb=2
+process/fix_alpha_border=true
+process/premult_alpha=false
+process/HDR_as_SRGB=false
+stream=false
+size_limit=0
+detect_3d=true
+svg/scale=1.0
