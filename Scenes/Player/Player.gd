@@ -15,14 +15,18 @@ var motion = Vector2()
 # Blink
 var can_blink = true
 var blink_effect
+var blink_timer
 var blink_recharge_progress_bar
 
 func _ready():
 	
 	# Blink
 	blink_effect = get_node("/root/Game/BlinkEffect")
-	blink_recharge_progress_bar = $CanvasLayer/BlinkRechargeProgressBar
-	$BlinkTimer.connect("timeout", self, "blink_timer_timeout")
+	
+	blink_timer = $Blink/Timer
+	blink_timer.connect("timeout", self, "blink_timer_timeout")
+	
+	blink_recharge_progress_bar = $Blink/CanvasLayer/RechargeProgressBar
 	
 	print("Player ready")
 	
@@ -30,7 +34,7 @@ func _ready():
 
 func _process(delta):
 	
-	blink_recharge_progress_bar.value = ($BlinkTimer.time_left * blink_recharge_progress_bar.max_value) / $BlinkTimer.wait_time
+	blink_recharge_progress_bar.value = (blink_timer.time_left * blink_recharge_progress_bar.max_value) / blink_timer.wait_time
 	
 	pass
 
@@ -90,11 +94,12 @@ func blink():
 	if self.position != blink_to_pos:
 		blink_effect.position = self.position
 		blink_effect.restart()
+		$AudioStreamPlayer2D.play()
 		
 		self.position = blink_to_pos
 		
 		can_blink = false
-		$BlinkTimer.start()
+		blink_timer.start()
 		
 	pass
 	

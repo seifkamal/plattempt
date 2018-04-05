@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/fart.wav-2f7c248a4af821b87acb9cc7e3156a99.sample"
+
+[deps]
+
+source_file="res://FX/Player/fart.wav"
+source_md5="96b42cf190c3ecbeaa8b1da6e5d019ff"
+
+dest_files=[ "res://.import/fart.wav-2f7c248a4af821b87acb9cc7e3156a99.sample" ]
+dest_md5="4d06301515b03143e36330c89087cddb"
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

@@ -1,11 +1,12 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Scenes/Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://Player Animation/Idle.png" type="Texture" id=2]
 [ext_resource path="res://Player Animation/Running-1.png" type="Texture" id=3]
-[ext_resource path="res://Player Animation/Running-2.png" type="Texture" id=4]
-[ext_resource path="res://Player Animation/Running-3.png" type="Texture" id=5]
-[ext_resource path="res://Player Animation/Running-4.png" type="Texture" id=6]
+[ext_resource path="res://Player Animation/Running-4.png" type="Texture" id=4]
+[ext_resource path="res://Player Animation/Running-2.png" type="Texture" id=5]
+[ext_resource path="res://Player Animation/Running-3.png" type="Texture" id=6]
+[ext_resource path="res://FX/Player/fart.wav" type="AudioStream" id=7]
 
 [sub_resource type="SpriteFrames" id=1]
 
@@ -20,15 +21,15 @@ animations = [ {
 "name": "fall",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ) ],
-"loop": true,
-"name": "running",
-"speed": 10.0
-}, {
-"frames": [ ExtResource( 6 ) ],
+"frames": [ ExtResource( 4 ) ],
 "loop": false,
 "name": "jump",
 "speed": 2.0
+}, {
+"frames": [ ExtResource( 3 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 4 ) ],
+"loop": true,
+"name": "running",
+"speed": 10.0
 } ]
 
 [sub_resource type="RectangleShape2D" id=2]
@@ -36,7 +37,7 @@ animations = [ {
 custom_solver_bias = 0.0
 extents = Vector2( 14.3704, 25.3989 )
 
-[node name="Player" type="KinematicBody2D"]
+[node name="Player" type="KinematicBody2D" index="0"]
 
 input_pickable = false
 collision_layer = 1
@@ -93,14 +94,16 @@ editor_draw_screen = true
 editor_draw_limits = false
 editor_draw_drag_margin = false
 
-[node name="BlinkTimer" type="Timer" parent="." index="3"]
+[node name="Blink" type="Node" parent="." index="3"]
+
+[node name="Timer" type="Timer" parent="Blink" index="0"]
 
 process_mode = 1
 wait_time = 2.0
 one_shot = true
 autostart = false
 
-[node name="CanvasLayer" type="CanvasLayer" parent="." index="4"]
+[node name="CanvasLayer" type="CanvasLayer" parent="Blink" index="1"]
 
 layer = 1
 offset = Vector2( 0, 0 )
@@ -108,7 +111,7 @@ rotation = 0.0
 scale = Vector2( 1, 1 )
 transform = Transform2D( 1, 0, 0, 1, 0, 0 )
 
-[node name="BlinkRechargeProgressBar" type="ProgressBar" parent="CanvasLayer" index="0"]
+[node name="RechargeProgressBar" type="ProgressBar" parent="Blink/CanvasLayer" index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -134,5 +137,15 @@ exp_edit = false
 rounded = false
 percent_visible = false
 _sections_unfolded = [ "Grow Direction", "Margin", "Percent" ]
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." index="4"]
+
+stream = ExtResource( 7 )
+volume_db = 3.0
+autoplay = false
+max_distance = 2000.0
+attenuation = 1.0
+bus = "Master"
+area_mask = 1
 
 
